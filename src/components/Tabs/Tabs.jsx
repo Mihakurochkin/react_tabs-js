@@ -14,21 +14,22 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed" role="tablist">
         <ul>
-          {tabs.map((tab) => (
-            <li 
-              className={tab.id === activeTab.id ? 'is-active' : ''} 
-              key={tab.id} 
+          {tabs.map(tab => (
+            <li
+              className={tab.id === activeTab.id ? 'is-active' : ''}
+              key={tab.id}
               data-cy="Tab"
               role="presentation"
             >
-              <a 
-                href={`#${tab.id}`} 
+              <a
+                id={tab.id}
+                href={`#${tab.id}`}
                 data-cy="TabLink"
                 role="tab"
                 aria-selected={tab.id === activeTab.id}
                 tabIndex={tab.id === activeTab.id ? 0 : -1}
                 onClick={() => tab.id !== activeTab.id && onTabSelected(tab.id)}
-                onKeyDown={(e) => handleKeyDown(e, tab.id)}
+                onKeyDown={e => handleKeyDown(e, tab.id)}
               >
                 {tab.title}
               </a>
@@ -37,8 +38,8 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
         </ul>
       </div>
 
-      <div 
-        className="block" 
+      <div
+        className="block"
         data-cy="TabContent"
         role="tabpanel"
         aria-labelledby={activeTab.id}
